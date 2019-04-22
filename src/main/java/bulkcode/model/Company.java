@@ -11,35 +11,40 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import lombok.Getter;
-import lombok.Setter;
+import bulkcode.model.nomenclature.Activity;
+import bulkcode.model.nomenclature.Type;
+import lombok.Builder;
+import lombok.Data;
 
 @Entity
 @Table(name = "company")
-@Getter
-@Setter
+@Data
+@Builder
 public class Company extends AuditModel {
 
-	private static final long serialVersionUID = 907063532390231517L;
+    private static final long serialVersionUID = 907063532390231517L;
 
-	@Id
-	@GeneratedValue(generator = "company_generator")
-	@SequenceGenerator(name = "company_generator", sequenceName = "company_sequence", initialValue = 1000)
-	private Long id;
+    @Id
+    @GeneratedValue(generator = "company_generator")
+    @SequenceGenerator(name = "company_generator", sequenceName = "company_sequence", initialValue = 1000)
+    private Long id;
 
-	@NotBlank
-	@Size(min = 3, max = 100)
-	private String name;
+    @NotBlank
+    @Size(min = 3, max = 100)
+    private String name;
 
-	@Size(min = 3, max = 100)
-	private String manager;
+    @Size(min = 3, max = 100)
+    private String manager;
 
-	private int founded;
+    private int founded;
 
-	@Column(name = "capital")
-	private float startCapital;
+    @Column(name = "capital")
+    private float startCapital;
 
-	@Enumerated(EnumType.STRING)
-	private Activity activity;
+    @Enumerated(EnumType.STRING)
+    private Activity activity;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
 }

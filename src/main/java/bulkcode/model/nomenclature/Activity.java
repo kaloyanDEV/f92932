@@ -1,4 +1,4 @@
-package bulkcode.model;
+package bulkcode.model.nomenclature;
 
 import lombok.Getter;
 
@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 public enum Activity {
 
-	A1("ЕООД"), A2("ООД"), A3("АД"), A4("ЕТ");
+	A1("Безхаберие"), A2("Бачкане");
 
 	private String desc;
 

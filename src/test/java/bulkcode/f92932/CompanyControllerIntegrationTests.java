@@ -2,6 +2,7 @@ package bulkcode.f92932;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import bulkcode.controller.CompanyController;
 import bulkcode.mapper.EntityMapper;
 import bulkcode.model.Company;
 import bulkcode.model.nomenclature.Activity;
+import bulkcode.model.nomenclature.Type;
 import bulkcode.repository.CompanyRepository;
 import bulkcode.service.impl.CompanyService;
 
@@ -50,15 +52,14 @@ public class CompanyControllerIntegrationTests {
 
         mockMvc = MockMvcBuilders.standaloneSetup(companyController).build();
 
-        Company company1 = Company.builder().id(new Long(1)).activity(Activity.A1).build();
-        Company company2 = Company.builder().id(new Long(2)).activity(Activity.A2).build();
+        Company company1 = Company.builder().id(new Long(1)).activity(Activity.A1).type(Type.T1).build();
+        Company company2 = Company.builder().id(new Long(2)).activity(Activity.A2).type(Type.T1).build();
 
         List<Company> resultList = Arrays.asList(company1, company2);
 
         when(companyRepository.findAll()).thenReturn(resultList);
 
-        // when(companyRepository.findById(new
-        // Long(1)).get()).thenReturn(company1);
+        when(companyRepository.findById(new Long(1))).thenReturn(Optional.of(company1));
     }
 
     @Test

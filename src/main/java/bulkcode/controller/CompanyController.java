@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import bulkcode.model.Company;
+import bulkcode.model.dto.CompanyDto;
 import bulkcode.service.ICompanyService;
 
 @RestController
@@ -26,14 +27,14 @@ public class CompanyController {
 
     @PostMapping("/companies")
     public ResponseEntity<HttpStatus> create(@Valid @RequestBody Company question) {
-//        Company company = Company.builder().name("ME").build();
+        // Company company = Company.builder().name("ME").build();
         return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
     }
 
     @GetMapping("/companies/{id}")
-    public ResponseEntity<Company> get(@PathVariable long id) {
-        Company company = Company.builder().name("ME").build();
-        return new ResponseEntity<Company>(company, HttpStatus.OK);
+    public ResponseEntity<CompanyDto> get(@PathVariable long id) {
+        CompanyDto companyDto = companyService.findById(new Long(id));
+        return new ResponseEntity<CompanyDto>(companyDto, HttpStatus.OK);
     }
 
     @PutMapping("/companies/{id}")
